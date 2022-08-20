@@ -7,11 +7,13 @@ def is_prime(number):
         n_ratio = number/n
         if n_ratio.is_integer():
             is_it_prime = False
+            break  # We know this number isn't prime, so no more computation is needed
     return is_it_prime
 
 
 def list_primes(start_number, end_number, print_primes=True):
     primes_list = []
+    begin_time = time()
     for n in range(start_number, end_number):
         start_time = time()
         prime_test = is_prime(n)
@@ -19,14 +21,12 @@ def list_primes(start_number, end_number, print_primes=True):
         if prime_test is True:
             primes_list.append(n)
             if print_primes:
-                print(n, "  ", (finish_time - start_time), " seconds to validate")
+                print(n, "  ", (finish_time - start_time), " seconds to validate    ", (time() - begin_time), " seconds in total")
     return primes_list
 
 lowest_number = 1000
-highest_number = 10000
+highest_number = 100000
 
 p_list = list_primes(lowest_number, highest_number)
 print("\n", len(p_list), " prime numbers between {} and {}".format(lowest_number, highest_number))
 print("\nThey are: ", p_list)
-
-
